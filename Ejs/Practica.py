@@ -1,60 +1,43 @@
-#Ahorcado
-import random
-def ciclinglives(liveslocal):
-    liveslocal-=1
-    return liveslocal
-def randomizeword(wordlistlocal):
-    keywordlocal=wordlistlocal[random.randrange(0, len(wordlistlocal))]
-    return keywordlocal
-def ifchoicenotok(choicelocal):
-    while choicelocal.lower()!="si" and choicelocal.lower()!="no":
-        choicelocal=input("Respuesta incorrecta, intente de nuevo\n")
-        if choicelocal.lower()!="si" and choicelocal.lower()!="no":
-            continue
-        else:
-            break
-    if choicelocal.lower()=="si":
+def primenumberlocaltwo(primelocal):
+    divscounterlocal=0
+    for number in range(1, 10):
+        if primelocal%number==0:
+            divscounterlocal+=1
+    if divscounterlocal>2:
         return True
     else:
         return False
+def factorialtwo(numberlocal):
+    factoriallocal=1
+    for values in range(1, numberlocal+1):
+        factoriallocal*=values
+    return factoriallocal
+def digitinnumbertwo(digitlocal, numberlocal):
+    counterlocal=0
+    for elem in str(numberlocal):
+        if str(digitlocal)==elem:
+            counterlocal+=1
+    return counterlocal
+def digitssum(numberlocal):
+    sumlocal=0
+    for number in str(numberlocal):
+        sumlocal+=int(number)
+    return sumlocal
 while True:
-    wordlist=["agua", "variable", "programa", "arbol", "computadora", "facultad", "edificio", "funcion", "parcial", "python", "java"]
-    keyword=randomizeword(wordlist)
-    shown="_"*len(keyword)
-    shownlist=list(shown)
-    counter=0
-    lives=10
-    print("Bienvenido al ahorcado, a continuacion tendra 10 intentos para adivinar las letras de una palabra\n"
-            "elegida aleatoriamente!")
-    while lives>=1:
-        print("".join(shownlist))
-        letter=input("Ingrese una letra\n")
-        while len(shownlist)>len(keyword):
-            shownlist.pop
-        while len(shownlist)<len(keyword):
-            shownlist.append("_")
-        for elem in range(len(keyword)):
-            if keyword[elem]==letter.lower():
-                shownlist[elem]=letter.lower()
-        if letter.lower() not in keyword:
-            lives=ciclinglives(lives)
-            print(f"No ha acertado en ninguna letra, intente nuevamente, le quedan {lives} intentos")
-        if "".join(shownlist)==keyword:
-            print(f''.join(shownlist))
-            print(f"Enhorabuena, ha adivinado la palabra! Era <{''.join(shownlist)}>")
+    try:
+        number=int(input("Ingrese un numero primo\n"))
+        digit=int(input("Ingrese un digito para saber la cantidad de sus ocurrencias en el numero ingresado\n"))
+        if primenumberlocaltwo(number)==True:
             break
-        elif lives==0:
-            print(f"Se ha quedado sin intentos! La palabra era <{''.join(shownlist)}>")
-            break
-        while len(shownlist)>len(keyword):
-            shownlist.pop
-        while len(shownlist)<len(keyword):
-            shownlist.append("_")
-    choice=input("Desea jugar de vuelta?\n")
-    if ifchoicenotok(choice)==True:
+        print(f"La suma de los digitos del numero ingresado son {digitssum(number)}")
+        print(f"El digito ingresado tiene {digitinnumbertwo(digit, number)} ocurrencia/s en el numero ingresado")
+        print(f"El factorial de {number} ingresado es {factorialtwo(number)}")
+        print("El numero ingresado es primo!")
+    except ValueError:
+        print("Alguno de los valores ingresados no son enteros, o no son numericos, intente de nuevo")
         continue
-    else:
-        break
-print("Gracias por jugar al ahorcado!")
-
-
+print(f"La suma de los digitos del numero ingresado son {digitssum(number)}")
+print(f"El digito ingresado tiene {digitinnumbertwo(digit, number)} ocurrencia/s en el numero ingresado")
+print(f"El factorial de {number} ingresado es {factorialtwo(number)}")
+print("El numero ingresado no era primo!")
+print("Finalizando...")

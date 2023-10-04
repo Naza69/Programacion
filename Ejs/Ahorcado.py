@@ -237,3 +237,5 @@ while True:
     else:
         break
 print("Gracias por jugar al ahorcado!")
+def test_choice():
+    assert ifchoicenotok("asjba")==False
