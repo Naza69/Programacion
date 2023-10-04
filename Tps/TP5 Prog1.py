@@ -1,3 +1,4 @@
+#Ejercicio 1
 def booldni(dnilocal):
     if len(str(dnilocal))==7 or len(str(dnilocal))==8:
         return True
