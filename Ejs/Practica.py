@@ -1,43 +1,33 @@
-def primenumberlocaltwo(primelocal):
-    divscounterlocal=0
-    for number in range(1, 10):
-        if primelocal%number==0:
-            divscounterlocal+=1
-    if divscounterlocal>2:
+def choicefuckingok(choicelocal):
+    while choicelocal.lower()!="si" and choicelocal.lower()!="no":
+        choicelocal=input("Respuesta invalida, ingrese si o no\n")
+        if choicelocal.lower()!="si" and choicelocal.lower()!="no":
+            continue
+        else:
+            break
+    if choicelocal.lower()=="si":
         return True
     else:
         return False
-def factorialtwo(numberlocal):
-    factoriallocal=1
-    for values in range(1, numberlocal+1):
-        factoriallocal*=values
-    return factoriallocal
-def digitinnumbertwo(digitlocal, numberlocal):
-    counterlocal=0
-    for elem in str(numberlocal):
-        if str(digitlocal)==elem:
-            counterlocal+=1
-    return counterlocal
-def digitssum(numberlocal):
-    sumlocal=0
-    for number in str(numberlocal):
-        sumlocal+=int(number)
-    return sumlocal
+def capicuanumberbool(capicualocal):
+    invcapicualocallist=list(reversed(str(capicualocal)))
+    print(invcapicualocallist)
+    if str(capicualocal)=="".join(invcapicualocallist):
+        return True
+    else:
+        return False
 while True:
     try:
-        number=int(input("Ingrese un numero primo\n"))
-        digit=int(input("Ingrese un digito para saber la cantidad de sus ocurrencias en el numero ingresado\n"))
-        if primenumberlocaltwo(number)==True:
+        capicua=int(input("Ingrese el numero que quiere saber si es capicua\n"))
+        if capicuanumberbool(capicua)==True:
+            print("El numero introducido es capicua!")
+        else:
+            print("El numero introducido no es capicua...")
+        choice=input("Quiere volver a hacer el procedimiento?\n")
+        if choicefuckingok(choice)==True:
+            continue
+        else:
             break
-        print(f"La suma de los digitos del numero ingresado son {digitssum(number)}")
-        print(f"El digito ingresado tiene {digitinnumbertwo(digit, number)} ocurrencia/s en el numero ingresado")
-        print(f"El factorial de {number} ingresado es {factorialtwo(number)}")
-        print("El numero ingresado es primo!")
     except ValueError:
-        print("Alguno de los valores ingresados no son enteros, o no son numericos, intente de nuevo")
+        print("El valor introducido no es entero, o no es numerico, intentelo de nuevo")
         continue
-print(f"La suma de los digitos del numero ingresado son {digitssum(number)}")
-print(f"El digito ingresado tiene {digitinnumbertwo(digit, number)} ocurrencia/s en el numero ingresado")
-print(f"El factorial de {number} ingresado es {factorialtwo(number)}")
-print("El numero ingresado no era primo!")
-print("Finalizando...")

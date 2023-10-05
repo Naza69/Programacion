@@ -452,7 +452,7 @@ def choicefuckingok(choicelocal):
         return False
 def primenumberlocal(primelocal):
     divscounterlocal=0
-    for number in range(1, 10):
+    for number in range(1, primelocal*10):
         if primelocal%number==0:
             divscounterlocal+=1
     if divscounterlocal>2:
