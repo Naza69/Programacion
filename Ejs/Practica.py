@@ -11,7 +11,6 @@ def choicefuckingok(choicelocal):
         return False
 def capicuanumberbool(capicualocal):
     invcapicualocallist=list(reversed(str(capicualocal)))
-    print(invcapicualocallist)
     if str(capicualocal)=="".join(invcapicualocallist):
         return True
     else:
