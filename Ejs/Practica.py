@@ -12,7 +12,6 @@ def start():
                 opchoice(choice)
             else:
                 break
-
         except ValueError:
             print("Valor ingresado no numerico, vuelva a intentarlo")
             continue
