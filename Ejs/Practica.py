@@ -1,7 +1,20 @@
-dick1={"naza":18, "rodri":19}
-dick2={"naza":18, "thomi":18}
-for i in dick1.items():
-    if i in dick2:
-        del dick2[i]
-dick1.update(dick2)
-print(dick1)
+class Naza:
+    #AKSJDBAKJSBDAHSBDJANSBDUAHSDUA
+    species="Humano"
+    def __init__(self, name, age):
+        self.name=name
+        self.age=age
+        self.__getName=name
+    @property
+    def getName(self):
+        return self.__getName
+    #AISJGBAKSJDBAJSHBDJASBDJANSBD
+    @getName.setter
+    def setName(self, new_name):
+        return self.__getName==new_name
+    #IAJSDKAJSBDIAHSDJASHDIAJSD
+    def hello(self):
+        return f"Hola {self.name}"
+lapersona=Naza("Nazareno", 18)
+print(lapersona.getName)
+
