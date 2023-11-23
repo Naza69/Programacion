@@ -9,27 +9,33 @@ def repeat(choicelocal):
         return True
     else: 
         return False
+
 def booldni(dnilocal):
     if len(str(dnilocal))==7 or len(str(dnilocal))==8:
         return True
     else:
         return False
+
 def longstring(stringlocal):
     liststrings=stringlocal.split(" ")
     for word in liststrings:
         if word==liststrings[len(liststrings)-1]:
             return len(word)
+
 def idenmember(namelocal, dnilocal):
     idlocal=namelocal.split(" ")[0]+str(len(namelocal.split()[1]))+str(dnilocal)[0]+str(dnilocal)[1]+str(dnilocal)[2]
     return idlocal
+
 def addingcounter(counterlocal):
     counterlocal+=1
     return counterlocal
+
 def dniok(dnilocal):
     if len(str(dnilocal))==7 or len(str(dnilocal))==8:
         return True
     else:
         return False
+
 def nameok(namelocal):
     if len(namelocal.split(" "))==3:
         return True
@@ -37,6 +43,7 @@ def nameok(namelocal):
         return True
     else:
         return False
+
 def choiceok(choicelocal):
     while choicelocal.lower()!="si" and choicelocal.lower()!="no":
         choicelocal=input("Respuesta ingresada invalida, solo se acepta si o no\n")
@@ -48,14 +55,17 @@ def choiceok(choicelocal):
         return True
     else:
         return False
+
 def avrtemp(tempminlocal, tempmaxlocal):
     avrtemplocal=(tempmaxlocal+tempminlocal)/2
     return avrtemplocal
+
 def stringspacey(stringlocal):
     stringwithspace=[]
     for char in stringlocal:
         stringwithspace.append(char+" ")
     return "".join(stringwithspace)
+
 def greatest(numberlistlocal):
     greatestlocal=0
     for number in numberlistlocal:

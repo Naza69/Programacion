@@ -34,3 +34,16 @@ def verificar_nombre(variable): #FUNCION PARA VALIDAR QUE NO HAYA NUMEROS EN EL 
         else:
             check = False
     return check
+
+def devolver_fichas(): #Pide la posicion de las fichas y valida que sea correcta (memotest)
+    while True:
+        try:
+            position = int(input(">"))
+            if position > 3 :
+                print("Posicion invalida, intentelo de nuevo")
+            elif position < 0 :
+                print("Posicion invalida, intentelo de nuevo")
+            else:
+                break
+        except ValueError:
+            print("Posicion invalida, intentelo de nuevo")

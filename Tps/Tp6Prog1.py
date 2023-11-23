@@ -132,53 +132,172 @@ while counter < 50: #CUANDO EL CONTADOR SEA 50 SALE DEL BUCLE
 print(repeticiones_todos(strings)) #LLAMO A FUNCION QUE CUENTA TODOS LOS CARACTERES Y CUANTAS VECES APARECEN
 #--------------------------------------------------------------------
 #8_
-import random as ran
-from colorama import Fore, Style 
-countergreens=0
-counterreds=0
-counteryellows=0
-counter=[]
-counterallgoals=[]
-sporteams=[[0 for elem in range(10)] for elem in range(10)]
-for visitant in range(len(sporteams)):
-    for local in range(len(sporteams)):
-        if visitant==local:
-            sporteams[visitant][local]=0
-        else:
-            sporteams[visitant][local]=ran.randrange(0, 6)
-for elem in range(len(sporteams)):
-    for elemtwo in range(len(sporteams)):
-        if sporteams[elem][elemtwo]>sporteams[elemtwo][elem]:
-            print(Fore.GREEN+"["+str(sporteams[elem][elemtwo]), end="]"+Style.RESET_ALL)
-            countergreens+=1
-        elif sporteams[elem][elemtwo]<sporteams[elemtwo][elem]:
-            print(Fore.RED+"["+str(sporteams[elem][elemtwo]), end="]"+Style.RESET_ALL)
-            counterreds+=1
-        elif sporteams[elem][elemtwo]==sporteams[elemtwo][elem]:
-            print(Fore.YELLOW+"["+str(sporteams[elem][elemtwo]), end="]"+Style.RESET_ALL)
-            counteryellows+=1
-        elif sporteams[elem][elemtwo]==sporteams[elem][elem]:
-            print("["+str(sporteams[elem][elemtwo]), end="]")
-    print("")
-    counter.append(countergreens)
-    counter.append(counterreds)
-    counter.append(counteryellows)
-    counterallgoals.append(counter)
-counteraux=0
-for elem in counterallgoals:
-    for elemtwo in elem:
-        if elem==0:
-            print(Fore.GREEN+"O"+Style.RESET_ALL+f"{elem[elemtwo]} victorias del equipo {elem}")
-        if elem==1:
-            print(Fore.RED+"O"+Style.RESET_ALL+f"{elem[elemtwo]} derrotas del equipo {elem}")
-        if elem==2:
-            print(Fore.YELLOW+"O"+Style.RESET_ALL+f"{elem[elemtwo]} empates del equipo {elem}")
-print()
-
+def seepoints(sporteamslocaltwo):
+    counterwins=0
+    counterdraws=0
+    counterallpoints=[]
+    for rows in range(len(sporteamslocaltwo)):
+        for columns in range(len(sporteamslocaltwo)):
+            if sporteamslocaltwo[rows][columns]>sporteamslocaltwo[columns][rows]:
+                counterwins+=3
+            elif sporteamslocaltwo[rows][columns]==sporteamslocaltwo[columns][rows]:
+                counterdraws+=1
+        counterallpoints.append(counterdraws+counterwins)
+        counterwins=0
+        counterdraws=0
+    counteraux=0
+    for rows in sporteams:
+        print(f"El equipo {counteraux+1} quedo con {counterallpoints[counteraux]} puntos")
+        counteraux+=1
+def diff(sportteamslocaltwo):
+    counteraux=0
+    counterauxtwo=0
+    for rows in range(len(sportteamslocaltwo)):
+        for columns in range(len(sportteamslocaltwo)):
+            if rows!=columns:
+                print(f"Diferencia entre goles marcados y recibidos para el equipo {counteraux+1} con el equipo {counterauxtwo+1}: : {abs(sportteamslocaltwo[rows][columns]-sportteamslocaltwo[columns][rows])}")
+            counterauxtwo+=1
+        counteraux+=1
+        counterauxtwo=0
+    print("---------------------------------------------------")
+def showingvictsdefeatsanddraws(counterallgoalslocaltwo):
+    counteraux=0
+    for rows in counterallgoalslocaltwo:
+        for columns in range(len(rows)):
+            if columns==0:
+                print(Fore.GREEN+f"O"*rows[columns]+Style.RESET_ALL+f" {rows[columns]} victoria/s para el equipo {counteraux+1}")
+            if columns==1:
+                print(Fore.RED+f"O"*rows[columns]+Style.RESET_ALL+f" {rows[columns]} derrota/s para el equipo {counteraux+1}")
+            if columns==2:
+                print(Fore.YELLOW+f"O"*rows[columns]+Style.RESET_ALL+f" {rows[columns]} empate/s para el equipo {counteraux+1}")
+        counteraux+=1
+        print("-----------------------------------------------------")
+def choose(choicelocal, counterallgoalslocal, sporteamslocal):
+    if choicelocal=="1":
+        showingvictsdefeatsanddraws(counterallgoalslocal)
+    elif choicelocal=="2":
+        diff(sporteamslocal)
+    elif choicelocal=="3":
+        seepoints(sporteamslocal)
+while True:
+    import random as ran
+    from colorama import Fore, Style 
+    countergreens=0
+    counterreds=0
+    counteryellows=0
+    counter=[]
+    counterallgoals=[]
+    sporteams=[[0 for elem in range(10)] for elem in range(10)]
+    for visitant in range(len(sporteams)):
+        for local in range(len(sporteams)):
+            if visitant==local:
+                sporteams[visitant][local]=0
+            else:
+                sporteams[visitant][local]=ran.randrange(0, 6)
+    for elem in range(len(sporteams)):
+        counter=[]
+        for elemtwo in range(len(sporteams)):
+            if sporteams[elem][elemtwo]>sporteams[elemtwo][elem]:
+                print(Fore.GREEN+"["+str(sporteams[elem][elemtwo]), end="]"+Style.RESET_ALL)
+                countergreens+=1
+            elif sporteams[elem][elemtwo]<sporteams[elemtwo][elem]:
+                print(Fore.RED+"["+str(sporteams[elem][elemtwo]), end="]"+Style.RESET_ALL)
+                counterreds+=1
+            elif sporteams[elem][elemtwo]==sporteams[elemtwo][elem]:
+                print(Fore.YELLOW+"["+str(sporteams[elem][elemtwo]), end="]"+Style.RESET_ALL)
+                counteryellows+=1
+            elif sporteams[elem][elemtwo]==sporteams[elem][elem]:
+                print("["+str(sporteams[elem][elemtwo]), end="]")
+        print("")
+        counter.append(countergreens)
+        counter.append(counterreds)
+        counter.append(counteryellows)
+        counterallgoals.append(counter)
+        countergreens=0
+        counterreds=0
+        counteryellows=0
+    counteraux=0
+    print("Dado esta tabla de goles y equipos, elija una opcion\n"
+        "1) Ver victorias, derrotas y empates de cada equipo\n"
+        "2) Ver diferencia entre goles marcados y recibidos de cada equipo\n"
+        "3) Ver los puntos que cada equipo obtuvo"
+        "4) Para salir")
+    choice=input()
+    choose(choice, counterallgoals, sporteams)
+    if choice=="4":
+        break
 #--------------------------------------------------------------------
 #9_
+attempts = 0 #Numero de intentos que se haran para completar el juego
+memory = []#En esta variable guardo los pares encontrados
+
+board = [
+    [1,1,2,2],  #Tablero del memotest
+    [3,3,4,4],
+    [5,5,6,6],
+    [7,7,8,8],
+] 
+
+print("VAMOS A JUGAR AL MEMOTEST")
+while (len(memory) < 8):
+    print (len(memory))
+    print ("Intento numero: ",attempts)
+    counter = 0 #Contador para bucle while en el que se van a hacer los intentos de las fichas
+    while True:
+
+        print("Ingrese la coordenada X de la posicion de la que desea levantar la ficha:  ")
+        position_1 = devolver_fichas()
+        print("Ingrese la coordenada Y de la posicion de la que desea levantar la ficha:  ")
+        position_2 = devolver_fichas()
+
+        counter += 1
+
+        if counter == 1:
+            tab1 = board[position_1][position_2]
+            print(f"Ficha levantada: {tab1}")
+        elif counter == 2:
+            tab2 = board[position_1][position_2]
+            print(f"Ficha levantada: {tab2}")
+        elif tab1 == tab2:
+            print("Estas levantando la misma ficha")
+            break
+
+    if tab1 == tab2: #Condicional por si se encuentra el par
+        print ("PAR ENCONTRADO")
+        print(f"El par encontrado es {tab1}, {tab2}")
+        if tab1 not in memory:
+            memory.append(tab1) #Si el par encontrado no habia sido encontrado anteriormente, lo guardo en una lista. Sino lo informo con un
+            attempts += 1
+        else:
+            print("Par ya encontrado anteriormente...")
+            attempts += 1
+    else:
+        print("PAR NO ENCONTRADO! intentelo de nuevo...")
+        attempts += 1 
+
+    if len(memory) == 8:
+        break
+print("JUEGO TERMINADO")
+print("Se intento un numero de veces: ",attempts)
 #--------------------------------------------------------------------
 #10_
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+print("MATRIZ :")
+for i in matrix:
+    print(i)
+
+dimension = len(matrix)
+
+main_diagonal = [matrix [i][i] for i in range (dimension)]
+reverse_diagonal = [matrix [i][dimension - 1 - i] for i in range(dimension)]
+
+print("\nDiagonal Principal: ",main_diagonal)
+print("\nDiagonal Inversa: ",reverse_diagonal)
 #--------------------------------------------------------------------
 #11_
 dictionary = {'Euro': '€', 'Dollar':'$', 'Yen':'¥'}

@@ -105,7 +105,7 @@ def combinations(lst, k, current=""):
 #Ejercicio 10
 def paper_sizes_A(N):
     if N == 0:
-        return (841, 1189)  # Measurements of A0 paper
+        return (841, 1189)  
     else:
         previous_width, previous_length = paper_sizes_A(N - 1)
         new_width = previous_length // 2
